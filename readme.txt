@@ -1,4 +1,4 @@
-=== Bannerspace Gallery === 
+=== Bannerspace Slideshow === 
 Contributors: deanoakley
 Author: Dean Oakley
 Author URI: http://thriveweb.com.au/ 
