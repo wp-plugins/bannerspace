@@ -12,14 +12,15 @@ A banner plugin for WordPress powered by the jQuery Cycle Plugin.
 
 == Description ==
 
-Bannerspace is powered by the awesome jQuery Cycle plugin.  The plugin creates a custom post type for your slides. At the moment it’s only capable of creating a single slide show.
+Bannerspace is powered by the awesome jQuery Cycle plugin.  The plugin creates a custom post type for your slides. At the moment it's only capable of creating a single slide show.
 Use the short code tag [bannerspace] and your done.
 The Bannerspace plugin allows you to:
+
 * Select the transition effect
 * Easily set the size of the banner, image and content areas
 * Order slides via drag and drop using the Simple Page Ordering
 * Change the colour of the UI elements
-* and more…
+* and more...
 
 See a [demo here](http://thriveweb.com.au/the-lab/bannerspace-wordpress-plugin/ "Bannerspace") 
 
