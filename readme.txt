@@ -13,7 +13,7 @@ A banner plugin for WordPress powered by the jQuery Cycle Plugin.
 == Description ==
 
 Bannerspace is powered by the awesome jQuery Cycle plugin.  The plugin creates a custom post type for your slides and allows the user to create simple slideshows with funky transition effects such as fade, scroll, shuffle, zoom, and  more.
-At the moment it's only capable of creating a single slide show per site. Generally on a home page.
+At the moment it is only capable of creating a single slide show per site. Generally on a home page.
 
 The Bannerspace plugin allows you to:
 
