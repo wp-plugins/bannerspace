@@ -5,7 +5,7 @@ Plugin URI: http://thriveweb.com.au/the-lab/bannerspace-wordpress-plugin/
 Description: A banner plugin for WordPress powered by the jQuery Cycle Plugin.
 Author: Dean Oakley
 Author URI: http://deanoakley.com/
-Version: 1.0.6
+Version: 1.2.0
 */
 
 /*  Copyright 2010  Dean Oakley  (email : contact@deanoakley.com)
@@ -61,7 +61,9 @@ class bannerspace_plugin_options {
 			$options['bg_colour'] = 'e5e5e5';
 			
 			$options['show_arrows'] = true;
-			$options['show_paging'] = true;			
+			$options['show_paging'] = true;
+			$options['auto_play'] = true;
+					
 			
 			update_option('bs_options', $options);
 		}
@@ -104,7 +106,14 @@ class bannerspace_plugin_options {
 			if ($_POST['show_paging'])
 				$options['show_paging'] = (bool)true;
 			else
-				$options['show_paging'] = (bool)false;			
+				$options['show_paging'] = (bool)false;
+				
+			if ($_POST['auto_play'])
+				$options['auto_play'] = (bool)true;
+			else
+				$options['auto_play'] = (bool)false;			
+				
+			
 			
 			update_option('bs_options', $options);
 
@@ -173,29 +182,29 @@ class bannerspace_plugin_options {
 				
 				<div style="width:25%;float:left;">				
 					<h3>Banner Width</h3>
-					<p><input type="text" name="banner_width" value="<?php echo($options['banner_width']); ?>" /></p>
+					<p><input type="text" name="banner_width" value="<?php echo($options['banner_width']); ?>" />px</p>
 				</div>
 				
 				<div style="width:25%; float:left;">				
 					<h3>Banner Height</h3>
-					<p><input type="text" name="banner_height" value="<?php echo($options['banner_height']); ?>" /></p>
+					<p><input type="text" name="banner_height" value="<?php echo($options['banner_height']); ?>" />px</p>
 				</div>
 				
 				<div style="width:25%; float:left;">				
 					<h3>Banner Padding</h3>
-					<p><input type="text" name="banner_padding" value="<?php echo($options['banner_padding']); ?>" /></p>
+					<p><input type="text" name="banner_padding" value="<?php echo($options['banner_padding']); ?>" />px</p>
 				</div>				
 				
 				<div style="clear:both; padding-bottom:15px; border-bottom:solid 1px #e6e6e6" ></div>
 				
 				<div style="width:25%;float:left;">				
 					<h3>Content Width</h3>
-					<p><input type="text" name="content_width" value="<?php echo($options['content_width']); ?>" /></p>
+					<p><input type="text" name="content_width" value="<?php echo($options['content_width']); ?>" />px</p>
 				</div>
 				
 				<div style="width:25%;float:left;">				
 					<h3>Content Padding</h3>
-					<p><input type="text" name="content_padding" value="<?php echo($options['content_padding']); ?>" /></p>
+					<p><input type="text" name="content_padding" value="<?php echo($options['content_padding']); ?>" />px</p>
 				</div>
 				
 				
@@ -206,47 +215,47 @@ class bannerspace_plugin_options {
 				
 				<div style="width:25%;float:left;">				
 					<h3>Image Width</h3>
-					<p><input type="text" name="image_width" value="<?php echo($options['image_width']); ?>" /></p>
+					<p><input type="text" name="image_width" value="<?php echo($options['image_width']); ?>" />px</p>
 				</div>
 				
 				<div style="width:25%; float:left;">				
 					<h3>Image Height</h3>
-					<p><input type="text" name="image_height" value="<?php echo($options['image_height']); ?>" /></p>
+					<p><input type="text" name="image_height" value="<?php echo($options['image_height']); ?>" />px</p>
 				</div>
 				
 				<div style="clear:both; padding-bottom:15px; border-bottom:solid 1px #e6e6e6" ></div>
 				
 				<div style="width:25%;float:left;">		
-					<h3>Slide delay in milliseconds</h3>
-					<p><input type="text" name="delay" value="<?php echo($options['delay']); ?>" /></p>
+					<h3>Slide delay</h3> 
+					<p><input type="text" name="delay" value="<?php echo($options['delay']); ?>" />ms</p>
 				</div>
 				
 				<div style="width:25%;float:left;">		
 					<h3>transition speed</h3>
-					<p><input type="text" name="speed" value="<?php echo($options['speed']); ?>" /></p>
+					<p><input type="text" name="speed" value="<?php echo($options['speed']); ?>" />ms</p>
 				</div>
 				
 				<div style="clear:both; padding-bottom:15px; border-bottom:solid 1px #e6e6e6" ></div>
 				
 				<div style="width:25%;float:left;">		
 					<h3>Banner background colour</h3>
-					<p><input type="text" name="bg_colour" value="<?php echo($options['bg_colour']); ?>" /></p>
+					<p>#<input type="text" name="bg_colour" value="<?php echo($options['bg_colour']); ?>" /></p>
 				</div>
 				
 				<div style="width:25%;float:left;">		
 					<h3>Nav colour</h3>
-					<p><input type="text" name="colour" value="<?php echo($options['colour']); ?>" /></p>
+					<p>#<input type="text" name="colour" value="<?php echo($options['colour']); ?>" /></p>
 				</div>
 				
 				<div style="width:25%;float:left;">		
 					<h3>Current nav colour</h3>
-					<p><input type="text" name="active_colour" value="<?php echo($options['active_colour']); ?>" /></p>
+					<p>#<input type="text" name="active_colour" value="<?php echo($options['active_colour']); ?>" /></p>
 				</div>
 				
 				<div style="width:25%;float:left;">		
 					<h3>Arrow background colour</h3>
-					<p><input type="text" name="arrow_colour" value="<?php echo($options['arrow_colour']); ?>" /></p>
-				</div>
+					<p>#<input type="text" name="arrow_colour" value="<?php echo($options['arrow_colour']); ?>" /></p>
+				</div> 
 				
 
 				
@@ -256,6 +265,8 @@ class bannerspace_plugin_options {
 				<h3><label><input name="show_arrows" type="checkbox" value="checkbox" <?php if($options['show_arrows']) echo "checked='checked'"; ?> /> Show arrows</label></h3>
 				
 				<h3><label><input name="show_paging" type="checkbox" value="checkbox" <?php if($options['show_paging']) echo "checked='checked'"; ?> /> Show paging</label></h3>
+				
+				<h3><label><input name="auto_play" type="checkbox" value="checkbox" <?php if($options['auto_play']) echo "checked='checked'"; ?> /> Auto play on load</label></h3>
 
 
 				<div style="clear:both; padding-bottom:15px; border-bottom:solid 1px #e6e6e6" ></div>
@@ -413,18 +424,23 @@ function bannerspace_wp_headers() {
 				containerResize: 0,
 				slideResize: 0,
 				requeueOnImageNotLoaded: 1,
+				cleartypeNoBg: true,
 				sync: '" . $options['sync_effect'] . "',
 				pagerAnchorBuilder: function(idx, slide) {
 					var title =  $($(slide).find('.title').get(0)).html();
 					
 					return '<span><a href=javascript:void(0) title='+title+'></a></span>';
 				}
-			}).cycle('pause');
+			}).cycle('pause')";
+		
+			if($options['auto_play'])
+				echo ";			
+					jQuery(window).load(function ($) {
+						jQuery('#bannerspace').cycle('resume');
+					});
+				";
 			
-			jQuery(window).load(function ($) {
-				jQuery('#bannerspace').cycle('resume');
-			});
-			
+		echo "
 		});
 		
 
@@ -442,13 +458,18 @@ function bannerspace_shortcode( $atts ) {
 	global $post;
 	$options = get_option('bs_options');
 	
+	extract(shortcode_atts(array(
+		'cat'	=> '', 
+		'category_name' => '', 
+	), $atts));
+	
 	$bannerspace_wp_plugin_path = get_option('siteurl')."/wp-content/plugins/bannerspace";
 	
 	$output_buffer ='
 		<div id="bannerspace_wrap">
 		<div id="bannerspace">
 			';
-			$loop = new WP_Query( array( "post_type" => "bannerspace_post", 'order' => 'asc', 'orderby' => 'menu_order', 'posts_per_page' => -1 ) );
+			$loop = new WP_Query( array( "post_type" => "bannerspace_post", 'order' => 'asc', 'orderby' => 'menu_order', 'posts_per_page' => -1, 'cat' => $cat, 'category_name' => $category_name ) );
 			while ( $loop->have_posts() ) : $loop->the_post();
 				
 				$link =  get_post_meta($post->ID, 'link', true);
@@ -508,8 +529,10 @@ function create_bannerspace_post_type() {
 		'public' => true,
 		'exclude_from_search ' => true,
 		'hierarchical' => true,
-		'supports' => array('title', 'editor', 'thumbnail', 'custom-fields', 'page-attributes')
+		'supports' => array('title', 'editor', 'thumbnail', 'custom-fields', 'page-attributes'),
+		'taxonomies' => array('category') 
 		)
+		
 	);
 }
 
