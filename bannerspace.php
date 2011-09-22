@@ -220,7 +220,7 @@ class bannerspace_plugin_options {
 				
 				<div style="clear:both; padding-bottom:15px; border-bottom:solid 1px #e6e6e6" ></div>
 				
-				<h3 style="font-style:italic; font-weight:normal; color:grey" >Images that are already on the server will not change size until you regenerage the thumbnails. Use <a title="http://wordpress.org/extend/plugins/ajax-thumbnail-rebuild/" href="http://wordpress.org/extend/plugins/ajax-thumbnail-rebuild/">AJAX thumbnail rebuild</a> or <a title="http://wordpress.org/extend/plugins/regenerate-thumbnails/" href="http://wordpress.org/extend/plugins/regenerate-thumbnails/">Regenerate Thumbnails</a> </h3>
+				<h3 style="font-style:italic; font-weight:normal; color:grey" >Images that are already on the server will not change size until you regenerate the thumbnails. Use <a title="http://wordpress.org/extend/plugins/ajax-thumbnail-rebuild/" href="http://wordpress.org/extend/plugins/ajax-thumbnail-rebuild/">AJAX thumbnail rebuild</a> or <a title="http://wordpress.org/extend/plugins/regenerate-thumbnails/" href="http://wordpress.org/extend/plugins/regenerate-thumbnails/">Regenerate Thumbnails</a> </h3>
 				
 				<div style="width:25%;float:left;">				
 					<h3>Image Width</h3>
