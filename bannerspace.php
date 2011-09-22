@@ -5,7 +5,7 @@ Plugin URI: http://thriveweb.com.au/the-lab/bannerspace-wordpress-plugin/
 Description: A banner plugin for WordPress powered by the jQuery Cycle Plugin.
 Author: Dean Oakley
 Author URI: http://deanoakley.com/
-Version: 1.2.0
+Version: 1.2.1
 */
 
 /*  Copyright 2010  Dean Oakley  (email : contact@deanoakley.com)
@@ -44,9 +44,9 @@ class bannerspace_plugin_options {
 			$options['banner_height'] = 250;
 			$options['banner_padding'] = 40;
 			
-			$options['content_width'] = 250;
-			
+			$options['content_width'] = 250;			
 			$options['content_padding'] = 40;
+			$options['hide_content'] = false;
 			
 			$options['image_width'] = 350;
 			$options['image_height'] = 200;
@@ -84,7 +84,12 @@ class bannerspace_plugin_options {
 			$options['banner_padding'] = stripslashes($_POST['banner_padding']);
 			
 			$options['content_width'] = stripslashes($_POST['content_width']);
-			$options['content_padding'] = stripslashes($_POST['content_padding']);
+			$options['content_padding'] = stripslashes($_POST['content_padding']);		
+			
+			if ($_POST['hide_content'])
+				$options['hide_content'] = (bool)true;
+			else
+				$options['hide_content'] = (bool)false;
 			
 			
 			$options['image_width'] = stripslashes($_POST['image_width']);
@@ -197,6 +202,8 @@ class bannerspace_plugin_options {
 				
 				<div style="clear:both; padding-bottom:15px; border-bottom:solid 1px #e6e6e6" ></div>
 				
+				<h3 style="font-style:italic; font-weight:normal;  color:grey" >The content area displays the post title and body. </h3>
+				
 				<div style="width:25%;float:left;">				
 					<h3>Content Width</h3>
 					<p><input type="text" name="content_width" value="<?php echo($options['content_width']); ?>" />px</p>
@@ -207,11 +214,13 @@ class bannerspace_plugin_options {
 					<p><input type="text" name="content_padding" value="<?php echo($options['content_padding']); ?>" />px</p>
 				</div>
 				
-				
+				<div style="width:25%;float:left;">
+					<h3><label><input name="hide_content" type="checkbox" value="checkbox" <?php if($options['hide_content']) echo "checked='checked'"; ?> /> Hide Content</label></h3>
+				</div>
 				
 				<div style="clear:both; padding-bottom:15px; border-bottom:solid 1px #e6e6e6" ></div>
 				
-				<h3 style="font-style:italic" >Images that are already on the server will not change size until you regenerage the thumbnails. Use <a title="http://wordpress.org/extend/plugins/ajax-thumbnail-rebuild/" href="http://wordpress.org/extend/plugins/ajax-thumbnail-rebuild/">AJAX thumbnail rebuild</a> (recommended) or <a title="http://wordpress.org/extend/plugins/regenerate-thumbnails/" href="http://wordpress.org/extend/plugins/regenerate-thumbnails/">Regenerate Thumbnails</a> (easier)</h3>
+				<h3 style="font-style:italic; font-weight:normal; color:grey" >Images that are already on the server will not change size until you regenerage the thumbnails. Use <a title="http://wordpress.org/extend/plugins/ajax-thumbnail-rebuild/" href="http://wordpress.org/extend/plugins/ajax-thumbnail-rebuild/">AJAX thumbnail rebuild</a> or <a title="http://wordpress.org/extend/plugins/regenerate-thumbnails/" href="http://wordpress.org/extend/plugins/regenerate-thumbnails/">Regenerate Thumbnails</a> </h3>
 				
 				<div style="width:25%;float:left;">				
 					<h3>Image Width</h3>
@@ -315,8 +324,8 @@ function bannerspace_wp_headers() {
 	
 	if(!empty($options['active_colour'])){ 
 		echo "
-			#bannerspace_nav li.activeSlide a {
-				background-color:#". $options['active_colour'] . ";
+			#bannerspace_nav .activeSlide a {
+				background-color:#". $options['active_colour'] . " !important;
 			}
 		"; 
 	}
@@ -394,6 +403,14 @@ function bannerspace_wp_headers() {
 					padding:'. $options['content_padding'] .'px;
 				}
 		';
+		
+	if($options['hide_content'])
+		echo '	#bannerspace .content {
+					display:none;
+				}
+		';
+		
+		
 		
 		
 		
