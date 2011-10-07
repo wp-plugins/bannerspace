@@ -37,6 +37,11 @@ There is also an admin panel with some options. Look for Bannerspace Options dow
 
 == Changelog ==
 
+= 1.2.3 =
+* Improved autoplay loading
+* Nav controls only display when page is fully loaded.
+* Minor css updates
+
 = 1.2.2 =
 * z-index fix
 
