@@ -37,6 +37,10 @@ There is also an admin panel with some options. Look for Bannerspace Options dow
 
 == Changelog ==
 
+= 1.2.6 =
+* Removed extra delay in auto play loading
+* Nav link fix
+
 = 1.2.5 =
 * Nav colour fix
 
