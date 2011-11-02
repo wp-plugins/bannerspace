@@ -443,7 +443,7 @@ function bannerspace_wp_headers() {
 				pagerAnchorBuilder: function(idx, slide) {
 					var title =  $($(slide).find('.title').get(0)).html();
 					
-					return '<span><a href=\'javascript:void(0);\' title='+title+'></a></span>';
+					return '<span><a href=\'javascript:void(0);\' title=\' ' +title+ ' \'></a></span>';
 				}
 			}).cycle('pause')";
 		
