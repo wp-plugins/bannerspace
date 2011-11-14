@@ -5,7 +5,7 @@ Plugin URI: http://thriveweb.com.au/the-lab/bannerspace-wordpress-plugin/
 Description: A banner plugin for WordPress powered by the jQuery Cycle Plugin.
 Author: Dean Oakley
 Author URI: http://deanoakley.com/
-Version: 1.2.6
+Version: 1.2.7
 */
 
 /*  Copyright 2010  Dean Oakley  (email : contact@deanoakley.com)
@@ -62,7 +62,8 @@ class bannerspace_plugin_options {
 			
 			$options['show_arrows'] = true;
 			$options['show_paging'] = true;
-			$options['auto_play'] = true;
+			
+			$options['auto_play'] = 2;
 					
 			
 			update_option('bs_options', $options);
@@ -113,11 +114,8 @@ class bannerspace_plugin_options {
 			else
 				$options['show_paging'] = (bool)false;
 				
-			if ($_POST['auto_play'])
-				$options['auto_play'] = (bool)true;
-			else
-				$options['auto_play'] = (bool)false;			
-				
+			
+			$options['auto_play'] = stripslashes($_POST['auto_play']);			
 			
 			
 			update_option('bs_options', $options);
@@ -183,6 +181,20 @@ class bannerspace_plugin_options {
 
 				</div>
 				
+
+				<div style="width:25%; float:left;">
+								
+					<h3>Auto play on load?</h3>
+			
+					<select name="auto_play">
+						<option value="0" <?php if($options['auto_play'] == 0) echo "selected='selected'"; ?> >Don't</option>
+						<option value="1" <?php if($options['auto_play'] == 1) echo "selected='selected'"; ?> >ASAP</option>
+						<option value="2" <?php if($options['auto_play'] == 2) echo "selected='selected'"; ?> >When banner images are loaded</option>
+						<option value="3" <?php if($options['auto_play'] == 3) echo "selected='selected'"; ?> >On page load</option>
+					</select>		
+				
+				</div>
+				
 				<div style="clear:both; padding-bottom:15px; border-bottom:solid 1px #e6e6e6" ></div>
 				
 				<div style="width:25%;float:left;">				
@@ -198,7 +210,10 @@ class bannerspace_plugin_options {
 				<div style="width:25%; float:left;">				
 					<h3>Banner Padding</h3>
 					<p><input type="text" name="banner_padding" value="<?php echo($options['banner_padding']); ?>" />px</p>
-				</div>				
+				</div>		
+				
+				
+
 				
 				<div style="clear:both; padding-bottom:15px; border-bottom:solid 1px #e6e6e6" ></div>
 				
@@ -274,10 +289,10 @@ class bannerspace_plugin_options {
 				<h3><label><input name="show_arrows" type="checkbox" value="checkbox" <?php if($options['show_arrows']) echo "checked='checked'"; ?> /> Show arrows</label></h3>
 				
 				<h3><label><input name="show_paging" type="checkbox" value="checkbox" <?php if($options['show_paging']) echo "checked='checked'"; ?> /> Show paging</label></h3>
+
+					
 				
-				<h3><label><input name="auto_play" type="checkbox" value="checkbox" <?php if($options['auto_play']) echo "checked='checked'"; ?> /> Auto play on load</label></h3>
-
-
+				
 				<div style="clear:both; padding-bottom:15px; border-bottom:solid 1px #e6e6e6" ></div>
 				
 				<p><input class="button-primary" type="submit" name="BS_save" value="Save Changes" /></p>
@@ -311,6 +326,7 @@ $bannerspace_wp_plugin_path = get_option('siteurl')."/wp-content/plugins/banners
 
 wp_enqueue_style( 'bannerspace-styles', 	$bannerspace_wp_plugin_path . '/bannerspace.css'); 
 wp_enqueue_script( 'jquery cycle', 	$bannerspace_wp_plugin_path . '/jquery.cycle.all.min.js');
+wp_enqueue_script( 'imagesloaded', 	$bannerspace_wp_plugin_path . '/jquery.imagesloaded.js');
 
 add_action( 'wp_head', 'bannerspace_wp_headers', 10 );
 
@@ -447,33 +463,53 @@ function bannerspace_wp_headers() {
 				}
 			}).cycle('pause')";
 		
-			if($options['auto_play']){
-				echo ";			
-					
-					jQuery(window).load(function ($) {
-													
+		
+			switch ($options['auto_play']){
+				
+				case 0: 
+					echo "						
+						jQuery('#bannerspace').imagesLoaded( function(){									
+							jQuery('.bs_arrow').fadeIn();
+							jQuery('#bannerspace_nav').fadeIn();
+							jQuery('#bannerspace .content').fadeIn();
+						});
+					";
+					break;
+			
+				case 1:
+					echo "																		
 						jQuery('.bs_arrow').fadeIn();
 						jQuery('#bannerspace_nav').fadeIn();
-						jQuery('#bannerspace .content').fadeIn();
+						jQuery('#bannerspace .content').fadeIn();					 
+						jQuery('#bannerspace').cycle('resume');					 					
 						
-						 
-						jQuery('#bannerspace').cycle('resume');
-						 					
-						 
-						 					
-					});
-				";
-			}
-			else{
-				echo ";			
-					jQuery(window).load(function ($) {									
-						jQuery('.bs_arrow').fadeIn();
-						jQuery('#bannerspace_nav').fadeIn();
-						jQuery('#bannerspace .content').fadeIn();
-					});
-				";
+					";
+					break;
+					
+				case 2:
+					echo "			
+						jQuery('#bannerspace').imagesLoaded(function ($) {													
+							jQuery('.bs_arrow').fadeIn();
+							jQuery('#bannerspace_nav').fadeIn();
+							jQuery('#bannerspace .content').fadeIn();					 
+							jQuery('#bannerspace').cycle('resume');						 					
+						});
+					";
+					break;
+					
+				case 3:
+					echo "		
+						jQuery(window).load(function ($) {													
+							jQuery('.bs_arrow').fadeIn();
+							jQuery('#bannerspace_nav').fadeIn();
+							jQuery('#bannerspace .content').fadeIn();					 
+							jQuery('#bannerspace').cycle('resume');						 					
+						});
+					";
+					break;
 			}
 			
+					
 		echo "
 		});
 		
