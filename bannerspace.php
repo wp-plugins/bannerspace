@@ -5,7 +5,7 @@ Plugin URI: http://thriveweb.com.au/the-lab/bannerspace-wordpress-plugin/
 Description: A banner plugin for WordPress powered by the jQuery Cycle Plugin.
 Author: Dean Oakley
 Author URI: http://deanoakley.com/
-Version: 1.2.7
+Version: 1.2.8
 */
 
 /*  Copyright 2010  Dean Oakley  (email : contact@deanoakley.com)
@@ -320,15 +320,14 @@ add_image_size('bannerspace', $options['image_width'], $options['image_height'] 
 
 //============================== insert HTML header tag ========================//
 
-wp_enqueue_script('jquery');
-
-$bannerspace_wp_plugin_path = get_option('siteurl')."/wp-content/plugins/bannerspace";
-
-wp_enqueue_style( 'bannerspace-styles', 	$bannerspace_wp_plugin_path . '/bannerspace.css'); 
-wp_enqueue_script( 'jquery cycle', 	$bannerspace_wp_plugin_path . '/jquery.cycle.all.min.js');
-wp_enqueue_script( 'imagesloaded', 	$bannerspace_wp_plugin_path . '/jquery.imagesloaded.js');
-
-add_action( 'wp_head', 'bannerspace_wp_headers', 10 );
+function bannerspace_scripts_method() {
+	wp_enqueue_script('jquery');
+	$bannerspace_wp_plugin_path = get_option('siteurl')."/wp-content/plugins/bannerspace";
+	wp_enqueue_style( 'bannerspace-styles',	$bannerspace_wp_plugin_path . '/bannerspace.css'); 
+	wp_enqueue_script( 'jquery cycle', 		$bannerspace_wp_plugin_path . '/jquery.cycle.all.min.js');
+	wp_enqueue_script( 'imagesloaded', 		$bannerspace_wp_plugin_path . '/jquery.imagesloaded.js');
+}
+add_action('wp_enqueue_scripts', 'bannerspace_scripts_method');
 
 function bannerspace_wp_headers() {
 	
@@ -520,7 +519,7 @@ function bannerspace_wp_headers() {
 	
 	echo "<!--	bannerspace [ END ] --> \n";
 }
-
+add_action( 'wp_head', 'bannerspace_wp_headers', 10 );
 
 add_shortcode( 'bannerspace', 'bannerspace_shortcode' );
 function bannerspace_shortcode( $atts ) {

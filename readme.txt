@@ -6,7 +6,7 @@ Plugin URI: http://thriveweb.com.au/the-lab/bannerspace-wordpress-plugin/
 Tags: banner, gallery, photography, photo, plugin, image, images, gallery, slideshow, short code, jQuery, jQuery Cycle
 Requires at least: 3.0
 Tested up to: 3.2.1
-Stable tag: 1.2.7
+Stable tag: 1.2.8
 
 A banner plugin for WordPress powered by the jQuery Cycle Plugin.
 
@@ -36,6 +36,9 @@ There is also an admin panel with some options. Look for Bannerspace Options dow
 
 
 == Changelog ==
+
+= 1.2.8 =
+* Proper script enqueuing 
 
 = 1.2.7 =
 * Added play on images loaded option
