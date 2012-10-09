@@ -5,7 +5,7 @@ Plugin URI: http://thriveweb.com.au/the-lab/bannerspace-wordpress-plugin/
 Description: A banner plugin for WordPress powered by the jQuery Cycle Plugin.
 Author: Dean Oakley
 Author URI: http://deanoakley.com/
-Version: 1.2.8
+Version: 1.3.0
 */
 
 /*  Copyright 2010  Dean Oakley  (email : contact@deanoakley.com)
@@ -189,8 +189,7 @@ class bannerspace_plugin_options {
 					<select name="auto_play">
 						<option value="0" <?php if($options['auto_play'] == 0) echo "selected='selected'"; ?> >Don't</option>
 						<option value="1" <?php if($options['auto_play'] == 1) echo "selected='selected'"; ?> >ASAP</option>
-						<option value="2" <?php if($options['auto_play'] == 2) echo "selected='selected'"; ?> >When banner images are loaded</option>
-						<option value="3" <?php if($options['auto_play'] == 3) echo "selected='selected'"; ?> >On page load</option>
+						<option value="2" <?php if($options['auto_play'] == 3) echo "selected='selected'"; ?> >On page load</option>
 					</select>		
 				
 				</div>
@@ -485,18 +484,7 @@ function bannerspace_wp_headers() {
 					";
 					break;
 					
-				case 2:
-					echo "			
-						jQuery('#bannerspace').imagesLoaded(function ($) {													
-							jQuery('.bs_arrow').fadeIn();
-							jQuery('#bannerspace_nav').fadeIn();
-							jQuery('#bannerspace .content').fadeIn();					 
-							jQuery('#bannerspace').cycle('resume');						 					
-						});
-					";
-					break;
-					
-				case 3:
+				default:
 					echo "		
 						jQuery(window).load(function ($) {													
 							jQuery('.bs_arrow').fadeIn();
@@ -535,6 +523,10 @@ function bannerspace_shortcode( $atts ) {
 	$bannerspace_wp_plugin_path = get_option('siteurl')."/wp-content/plugins/bannerspace";
 	
 	$output_buffer ='
+		
+		<img style="display:none; visibility:hidden; " src="'.$bannerspace_wp_plugin_path.'/l_arrow.png" />
+		<img style="display:none; visibility:hidden; " src="'.$bannerspace_wp_plugin_path.'/r_arrow.png" />
+		
 		<div id="bannerspace_wrap">
 		<div id="bannerspace">
 			';
