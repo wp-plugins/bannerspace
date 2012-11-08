@@ -5,7 +5,7 @@ Plugin URI: http://thriveweb.com.au/the-lab/bannerspace-wordpress-plugin/
 Description: A banner plugin for WordPress powered by the jQuery Cycle Plugin.
 Author: Dean Oakley
 Author URI: http://deanoakley.com/
-Version: 1.3.0
+Version: 1.3.1
 */
 
 /*  Copyright 2010  Dean Oakley  (email : contact@deanoakley.com)
@@ -324,7 +324,6 @@ function bannerspace_scripts_method() {
 	$bannerspace_wp_plugin_path = get_option('siteurl')."/wp-content/plugins/bannerspace";
 	wp_enqueue_style( 'bannerspace-styles',	$bannerspace_wp_plugin_path . '/bannerspace.css'); 
 	wp_enqueue_script( 'jquery cycle', 		$bannerspace_wp_plugin_path . '/jquery.cycle.all.min.js');
-	wp_enqueue_script( 'imagesloaded', 		$bannerspace_wp_plugin_path . '/jquery.imagesloaded.js');
 }
 add_action('wp_enqueue_scripts', 'bannerspace_scripts_method');
 
