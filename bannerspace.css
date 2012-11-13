@@ -142,6 +142,10 @@
 	display: none;
 }
 
+#bannerspace .s1 .content{
+	display: block;
+}
+
 #bannerspace .imageWrapper{
 	position:relative;
 
