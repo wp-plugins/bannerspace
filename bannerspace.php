@@ -5,7 +5,7 @@ Plugin URI: http://thriveweb.com.au/the-lab/bannerspace-wordpress-plugin/
 Description: A banner plugin for WordPress powered by the jQuery Cycle Plugin.
 Author: Dean Oakley
 Author URI: http://deanoakley.com/
-Version: 1.3.2
+Version: 1.3.3
 */
 
 /*  Copyright 2010  Dean Oakley  (email : contact@deanoakley.com)
@@ -189,7 +189,7 @@ class bannerspace_plugin_options {
 					<select name="auto_play">
 						<option value="0" <?php if($options['auto_play'] == 0) echo "selected='selected'"; ?> >Don't</option>
 						<option value="1" <?php if($options['auto_play'] == 1) echo "selected='selected'"; ?> >ASAP</option>
-						<option value="2" <?php if($options['auto_play'] == 3) echo "selected='selected'"; ?> >On page load</option>
+						<option value="3" <?php if($options['auto_play'] == 3) echo "selected='selected'"; ?> >On page load</option>
 					</select>		
 				
 				</div>
